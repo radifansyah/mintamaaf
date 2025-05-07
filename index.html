@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buku Interaktif</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #fde2ff, #e2f0ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+      position: relative;
+      perspective: 1500px;
+    }
+
+    .book {
+      width: 100%;
+      height: 600px;
+      max-height: 80vh;
+      position: relative;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      background: white;
+      position: absolute;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transform-origin: left;
+      transition: transform 0.8s ease;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+      z-index: 1;
+    }
+
+    .page img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+
+    .page p {
+      font-size: 16px;
+      color: #444;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    .page.flipped {
+      transform: rotateY(-180deg);
+      z-index: 0;
+    }
+
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      background: #ffb3ec;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ff8fd1;
+    }
+
+    @media (max-width: 480px) {
+      .book {
+        height: 450px;
+      }
+
+      .page p {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 12px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="book" id="book">
+      <div class="page" style="z-index: 4;"> <!-- Halaman 1 -->
+        <img src="bi.jpeg" alt="Page 1">
+        <p>🌸 Cuman mau curhat aja soalnya kalau chat ganggu aku janji kok ini janji yang ke 2 saya akan ndak ganggu lagi sekalipun penting + meresponya tidak cuman biar lega saja😞 huh</p>
+      </div>
+      <div class="page" style="z-index: 3;"> <!-- Halaman 2 -->
+        <img src="WhatsApp Image 2025-05-07 at 21.22.43.jpeg" alt="Page 2">
+        <p> Lucu soalnya heheh🤣 iseng iseng kepo profil terus kenapa ya gambarnya yang di text begitu tiba tiba muncul kepikiran soalnya pernah ingat kenapa ya tulisan mobil ambulance terbalik ternyata kalau di liat dari kaca spion tulisan nya sempurna tidak terbalik sama dengan foto profil 🤣 </p>
+      </div>
+      <div class="page" style="z-index: 2;"> <!-- Halaman 3 -->
+        <img src="WhatsApp Image 2025-05-07 at 21.22.59.jpeg" alt="Page 3">
+        <p>Ini juga lucu heheh🤣 </p>
+      </div>
+      <div class="page" style="z-index: 1;"> <!-- Halaman 4 -->
+        <!-- <img src="https://via.placeholder.com/600x400/e0ccff/333?text=Halaman+4" alt="Page 4"> -->
+        <p>Cuman mau bilang jangan buat teroma orang lain lagi ya soalnya cukup aku doang aja akhir akhir ini memang berat ku rasa berat banget + pulang kerja ++ sakit semua badan dan di tambah malamnya kata kata mutiara yang bagus heheh nyesek banget soalnya dengar kata pamit, padahal saya cuman numpang cerita doang kok karena akhir-akhir ini berat butuh teman ndak lebih, udah aku bilang dari awal "ndak lama sudah habis topik ku nanti jadi asing lagi" itu udah kode kok, tapi aku udah terima sekarang  heheh🤣 nanti kalau gabut lagi silahkan chat aja tapi saya pastikan ndak kayak dulu lagi responnya bahkan saya tidak respon sekalipun penting  + sikapnya berubah soalnya  </p>
+      </div>
+    </div>
+    
+    <div class="controls">
+      <button onclick="goPrevPage()">⟵ Sebelumnya</button>
+      <button onclick="goNextPage()">Berikutnya ⟶</button>
+    </div>
+  </div>
+
+  <script>
+    const pages = document.querySelectorAll(".page");
+    let current = 0;
+
+    function goNextPage() {
+      if (current < pages.length) {
+        pages[current].classList.add("flipped");
+        current++;
+      }
+    }
+
+    function goPrevPage() {
+      if (current > 0) {
+        current--;
+        pages[current].classList.remove("flipped");
+      }
+    }
+  </script>
+</body>
+</html>
